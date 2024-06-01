@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <a href="#" id="profile-pic-link">
+                <img src="{% static 'images/default-profile.png' %}" alt="Profile Picture" id="profile-pic">
+            </a>
+            <h1>{{ user.username }}</h1>
+        </div>
+        <div class="profile-details">
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Bio:</strong> {{ user.profile.bio }}</p>
+            <p><strong>Location:</strong> {{ user.profile.location }}</p>
+            <p><strong>Birthdate:</strong> {{ user.profile.birthdate }}</p>
+            <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
+            <a href="{% url 'change_password' %}" class="btn">Change Password</a>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.signup-container {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.signup-container h1 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.form-group {
+    margin-bottom: 1em;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #007BFF;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.social-signup {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.social-signup p {
+    margin-bottom: 0.5em;
+}
+
+.social-signup .btn {
+    width: 48%;
+    margin: 0.5em 1%;
+}
+
+.btn.google {
+    background-color: #db4437;
+}
+
+.btn.google:hover {
+    background-color: #c33d2e;
+}
+
+.btn.facebook {
+    background-color: #3b5998;
+}
+
+.btn.facebook:hover {
+    background-color: #2d4373;
+}
+
+.back-arrow {
+    display: block;
+    margin-bottom: 1em;
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.back-arrow:hover {
+    text-decoration: underline;
+}
+.profile-container {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.profile-header {
+    margin-bottom: 1em;
+}
+
+#profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #007BFF;
+    cursor: pointer;
+}
+
+.profile-details {
+    text-align: left;
+}
+
+.profile-details p {
+    margin: 0.5em 0;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #007BFF;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.form-group {
+    margin-bottom: 1em;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
