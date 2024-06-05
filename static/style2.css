@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.header {
+    background-color: #007BFF;
+    padding: 1em 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.main-content {
+    padding: 2em 0;
+    text-align: center;
+}
+
+.signup-container, .login-container, .profile-container {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    margin: 2em auto;
+}
+
+.signup-container h1, .login-container h1, .profile-container h1 {
+    margin-bottom: 1em;
+}
+
+.form-group {
+    margin-bottom: 1em;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #007BFF;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.social-signup {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.social-signup p {
+    margin-bottom: 0.5em;
+}
+
+.social-signup .btn {
+    width: 30%;
+    margin: 0.5em 1%;
+}
+
+.btn.google {
+    background-color: #db4437;
+}
+
+.btn.google:hover {
+    background-color: #c33d2e;
+}
+
+.btn.facebook {
+    background-color: #3b5998;
+}
+
+.btn.facebook:hover {
+    background-color: #2d4373;
+}
+
+.btn.linkedin {
+    background-color: #0077B5;
+}
+
+.btn.linkedin:hover {
+    background-color: #005582;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
