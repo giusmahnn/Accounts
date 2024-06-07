@@ -79,6 +79,22 @@ def login_step_2(request):
     return redirect('login')
 
 def signup(request):
+    """
+    Handles the user signup process.
+
+    If the request method is POST, it retrieves the username, email, password, and confirm_password from the request POST data.
+    Validates the password and checks if the password and confirm_password match.
+    Checks if the username or email already exists in the database.
+    If all validations pass, creates a new CustomUser instance, sets the password, saves the user, logs in the user, and redirects to the home page.
+    If any validation fails, displays an error message and redirects to the signup view.
+    If the request method is not POST, renders the signup template.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object sent by the user.
+
+    Returns:
+        HttpResponse: The HTTP response object that either redirects the user to different views based on the signup process or renders the signup template.
+    """
     if request.method=='POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -94,10 +110,11 @@ def signup(request):
             return redirect('signup')
         if CustomUser.objects.filter(username=username).exists():
             messages.error(request, 'Username already exists')
-            return redirect('login')
-        if CustomUser.objects.filter(email=email).exists():
-            messages.error(request, 'Email already exists')
             return redirect('signup')
+        if CustomUser.objects.filter(email=email).exists():
+            messages.error(request, 'Email already exists, Please login')
+            return redirect('login')
+        
         user = CustomUser.objects.create_user(username=username, email=email, password=password)
         try:
             user.set_password(password)
