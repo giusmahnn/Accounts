@@ -1,7 +1,10 @@
+from django.db import IntegrityError
+from django.forms import ValidationError
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, logout, authenticate
 from .models import CustomUser
 from django.contrib import messages
+from .utils import validate_password
 #from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -75,7 +78,52 @@ def login_step_2(request):
             return redirect('login_step_2')
     return redirect('login')
 
+def signup(request):
+    if request.method=='POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        if password != confirm_password:
+            messages.error(request, 'Passwords do not match')
+            return redirect('signup')
+        try:
+            validate_password(password)
+        except ValidationError as e:
+            messages.error(request, str(e))
+            return redirect('signup')
+        if CustomUser.objects.filter(username=username).exists():
+            messages.error(request, 'Username already exists')
+            return redirect('login')
+        if CustomUser.objects.filter(email=email).exists():
+            messages.error(request, 'Email already exists')
+            return redirect('signup')
+        user = CustomUser.objects.create_user(username=username, email=email, password=password)
+        try:
+            user.set_password(password)
+            user.save()
+            login(request, user)
+            return redirect('home')
+        except Exception as e:
+            messages.error(request, 'Error creating account')
+            return redirect('signup')
+    else:
+        return render(request, 'accounts/signup.html')
+
+            
+
+
+
 def logout_view(request):
+    """
+    Logs out the user if the request method is POST and redirects to the home page.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object sent by the user.
+
+    Returns:
+        HttpResponseRedirect: Redirects the user to the home page after logging out.
+    """
     if request.method == 'POST':
         logout(request)
     return redirect('home')

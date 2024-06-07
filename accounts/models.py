@@ -73,6 +73,7 @@ class CustomUser(AbstractUser):
     location = models.CharField(max_length=255, blank=True, null=True)
     otp_field = models.CharField(max_length=6, blank=True, null=True)
     otp_created_at = models.DateTimeField(blank=True, null=True)
+    password = models.CharField(max_length=100)
 
 
     USERNAME_FIELD = 'email'
