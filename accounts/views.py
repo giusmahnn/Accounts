@@ -1,11 +1,10 @@
-from django.db import IntegrityError
 from django.forms import ValidationError
-from django.shortcuts import render,redirect
+from django.shortcuts import  render,redirect
 from django.contrib.auth import login, logout, authenticate
 from .models import CustomUser
 from django.contrib import messages
 from .utils import validate_password
-#from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -114,21 +113,23 @@ def signup(request):
         if CustomUser.objects.filter(email=email).exists():
             messages.error(request, 'Email already exists, Please login')
             return redirect('login')
-        
         user = CustomUser.objects.create_user(username=username, email=email, password=password)
-        try:
-            user.set_password(password)
-            user.save()
-            login(request, user)
-            return redirect('home')
-        except Exception as e:
-            messages.error(request, 'Error creating account')
-            return redirect('signup')
+        user.set_password(password)
+        user.save()
+        login(request, user)
+        return redirect('home')
     else:
         return render(request, 'accounts/signup.html')
 
-            
 
+def profile(request):
+    user = request.user
+    return render(request, 'accounts/profile.html', {'user': user})
+
+
+@login_required(login_url='login')
+def profile_edit(request):
+    return render(request,'accounts/edit_profile.html')
 
 
 def logout_view(request):

@@ -5,6 +5,7 @@
 {% block content %}
 <div class="profile-container">
     <h1>Edit Profile</h1>
+    <h4>{{ user.username }}</h4>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">

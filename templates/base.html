@@ -17,7 +17,7 @@
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Contact</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="#">{{ user.username }}</a></li>
+                    <li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
                     <li>
                         <form method="POST" action="{% url 'logout' %}" style="display:inline;">
                             {% csrf_token %}

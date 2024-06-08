@@ -3,10 +3,17 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} style="color: red;" class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+{% endif %}
 <div class="profile-container">
     <div class="profile-header">
         <a href="#" id="profile-pic-link">
-            <img src="{% static 'images/default-profile.png' %}" alt="Profile Picture" id="profile-pic">
+            <img src="#" alt="Profile Picture" id="profile-pic">
         </a>
         <h1>{{ user.username }}</h1>
     </div>
@@ -15,8 +22,8 @@
         <p><strong>Bio:</strong> {{ user.profile.bio }}</p>
         <p><strong>Location:</strong> {{ user.profile.location }}</p>
         <p><strong>Birthdate:</strong> {{ user.profile.birthdate }}</p>
-        <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
-        <a href="{% url 'change_password' %}" class="btn">Change Password</a>
+        <a href="{% url 'profile_edit' %}" class="btn">Edit Profile</a>
+        <a href="#" class="btn">Change Password</a>
     </div>
 </div>
 {% endblock %}
