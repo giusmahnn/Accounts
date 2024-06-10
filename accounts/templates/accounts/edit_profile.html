@@ -6,7 +6,7 @@
 <div class="profile-container">
     <h1>Edit Profile</h1>
     <h4>{{ user.username }}</h4>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" action="{% url 'profile_edit' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
             <label for="profile-pic">Profile Picture</label>
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="birthdate">Birthdate</label>
-            <input type="date" id="birthdate" name="birthdate" value="{{ user.profile.birthdate }}">
+            <input type="date" id="birthdate" name="date_of_birth" value="{{ user.profile.birthdate }}">
         </div>
         <button type="submit" class="btn">Save Changes</button>
     </form>

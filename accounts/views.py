@@ -123,13 +123,37 @@ def signup(request):
 
 
 def profile(request):
+    """
+    Renders the profile page for the authenticated user.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object sent by the user.
+
+    Returns:
+        HttpResponse: The rendered profile page with the context containing the authenticated user information.
+    """
     user = request.user
     return render(request, 'accounts/profile.html', {'user': user})
 
 
 @login_required(login_url='login')
 def profile_edit(request):
-    return render(request,'accounts/edit_profile.html')
+    if request.method == 'GET':
+        user = request.user
+        return render(request, 'accounts/edit_profile.html', {'user': user})
+    elif request.method == 'POST':
+        bio = request.POST.get('bio')
+        location = request.POST.get('location')
+        date_of_birth = request.POST.get('date_of_birth')
+        user = request.user
+        user.bio = bio
+        user.location = location
+        user.date_of_birth = date_of_birth
+        user.save()
+        messages.success(request, 'Profile updated successfully.')
+        return redirect('profile')
+    
+
 
 
 def logout_view(request):
