@@ -168,7 +168,48 @@ def profile_edit(request):
         messages.success(request, 'Profile updated successfully.')
         return redirect('profile')
     
+@login_required
+def change_password(request):
+    '''
+    Change the password for the currently logged-in user.
 
+    This view function allows a logged-in user to change their password.
+    It validates the old password, ensures the new passwords match, 
+    and validates the new password using the 'validate_password' function from 'utils.py'. 
+    If all validations pass, the user's password is updated and a success message is displayed. 
+    If any validation fails, appropriate error messages are shown.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object.
+
+    Returns:
+    HttpResponse: Redirects to the 'profile' page if the password change is successful. 
+    Otherwise, redirects back to the 'change_password' page with error messages.
+
+    Requires the user to be logged in.
+    '''
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+        user =  request.user
+        if not user.check_password(old_password):
+            messages.error(request, 'Check old password')
+            return redirect('change_password')
+        if new_password1 != new_password2:
+            messages.error(request, 'Password mismatch')
+            return redirect('change_password')
+        try:
+            validate_password(new_password1)
+        except ValidationError as e:
+            messages.error(request, str(e))
+            return redirect('change_password')
+        user.set_password(new_password1)
+        user.save()
+        messages.success(request, 'Password changed successfully')
+        return redirect('profile')
+    else:
+        return render(request, 'accounts/change_password.html')
 
 
 def logout_view(request):

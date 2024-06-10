@@ -23,7 +23,7 @@
         <p><strong>Location:</strong> {{ user.location }}</p>
         <p><strong>Birthdate:</strong> {{ user.date_of_birth }}</p>
         <a href="{% url 'profile_edit' %}" class="btn">Edit Profile</a>
-        <a href="#" class="btn">Change Password</a>
+        <a href="{% url 'change_password' %}" class="btn">Change Password</a>
     </div>
 </div>
 {% endblock %}
