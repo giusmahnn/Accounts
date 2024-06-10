@@ -138,6 +138,21 @@ def profile(request):
 
 @login_required(login_url='login')
 def profile_edit(request):
+    """
+    Handles the user profile editing process.
+
+    This function is decorated with @login_required to ensure that only authenticated users can access this view.
+    If the request method is GET, it retrieves the authenticated user's information and renders the 'accounts/edit_profile.html' template with the user's information.
+    If the request method is POST, it retrieves the updated bio, location, and date_of_birth from the request POST data.
+    Updates the authenticated user's information with the new values, saves the changes, and displays a success message.
+    Finally, redirects the user to the 'profile' view.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object sent by the user.
+
+    Returns:
+    HttpResponse: The HTTP response object that either renders the edit profile template or redirects the user to different views based on the request method.
+    """
     if request.method == 'GET':
         user = request.user
         return render(request, 'accounts/edit_profile.html', {'user': user})
